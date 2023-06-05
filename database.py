@@ -51,7 +51,6 @@ def create_tb():
     con.commit() # 적용
     con.close()  # db닫기
 
-
 def drop_tb():
     con = sqlite3.connect('database.db')
     cursor = con.cursor() # sql 문장을 실행시키기 위해 준비
