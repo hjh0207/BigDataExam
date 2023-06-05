@@ -12,7 +12,7 @@ if response.status_code == 200:
     for tr in soup.select("tbody > tr.list > td.info"):
         title = tr.select_one("a.title.ellipsis").text
         artist = tr.select_one("a.artist.ellipsis").text
-        print(rank, title.strip(), artist.strip())
+        print(f'{rank}위', title.strip(), artist.strip())
         rank += 1
 else:
         print(f"HTTP 요청 실패 코드: {response.status_code}")
