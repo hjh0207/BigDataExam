@@ -1,6 +1,7 @@
 import database
 import dmovie
 import geni
+import news
 
 print('실시간 트렌드 보기')
 print('1.데이터 갱신')
@@ -19,6 +20,6 @@ if num == '1':
 # 만약에 2번이면 디비에 저장된 데이터 보기
 elif num == '2':
     print('디비에 저장된 데이터 보기')
-    inssa = db.get_data() # 디비에서 데이터 가져오기
+    inssa = database.get_data() # 디비에서 데이터 가져오기
     for m in inssa:
         print(f"{m[0]}위 {m[1]} - {m[2]}")

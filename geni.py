@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def genie():
+def geni():
     inssa = list()
     url = 'https://www.genie.co.kr/chart/top200?ditc=M&rtm=N'
 
