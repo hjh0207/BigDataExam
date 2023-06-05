@@ -35,24 +35,29 @@ def get_data():
     con.close()  # db닫기
     return all_data
 
-# 데이터 보기 함수
-def get_one_data(artist):
-    # sqlite db 파일 생성 및 연결
+def create_tb():
     con = sqlite3.connect('database.db')
-    # sql 문장을 실행시키기 위해 준비
-    cursor = con.cursor() 
-
-    sql = f'''
-    SELECT * FROM geni WHERE artist = '{artist}'
+    print(type(con))
+    cursor = con.cursor() # sql 문장을 실행시키기 위해 준비
+    sql = '''
+    CREATE TABLE "geni" (
+        "rank"    INTEGER NOT NULL,
+        "title"  TEXT NOT NULL,
+        "artist"  TEXT NOT NULL,
+        PRIMARY KEY("rank" AUTOINCREMENT)
+    )
     '''
     cursor.execute(sql) # sql 을 실행
-    # 전체 데이터 보기
-    all_data = cursor.fetchall()
+    con.commit() # 적용
     con.close()  # db닫기
-    return all_data
 
-# 테이블 삭제하는 함수
 
-# 테이블 생성하는 함수
-
-# 위 함수를 만들고 1번을 누르면 멜론 데이터 갱신하는것을 만들어 보자
+def drop_tb():
+    con = sqlite3.connect('database.db')
+    cursor = con.cursor() # sql 문장을 실행시키기 위해 준비
+    sql = '''
+        DROP TABLE geni
+    '''
+    cursor.execute(sql) # sql 을 실행
+    con.commit() # 적용
+    con.close()  # db닫기

@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-def geni():
+def genie():
+
     inssa = list()
     url = 'https://www.genie.co.kr/chart/top200?ditc=M&rtm=N'
 
@@ -15,9 +16,9 @@ def geni():
             title = tr.select_one("a.title.ellipsis").text
             artist = tr.select_one("a.artist.ellipsis").text
             #print(f'{rank}위', title.strip(), artist.strip())
-            inssa.append(title.strip(), artist.strip())
+            inssa.append((title.strip(), artist.strip()))
             rank += 1
     else:
             print(f"HTTP 요청 실패 코드: {response.status_code}")
         
-    return inssa # 리스트 반환
+    return inssa
