@@ -13,7 +13,7 @@ print('5.영화 예매순위 보기')
 num = input('선택 번호 입력: ')
 
 if num == '1':
-    print('정보 가져와서 디비에 저장')
+    print('지니의 일간 노래순위 정보를 가져와서 디비에 저장')
     drop_tb()
     create_tb()
     inssa = geni.genie()
