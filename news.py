@@ -2,19 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 
 url = "https://news.naver.com/main/list.naver?mode=LSD&mid=sec&sid1=001"
-
-# HTTP GET 요청을 보냅니다.
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 response = requests.get(url)
 
-# 응답 데이터의 인코딩을 확인하고, 필요에 따라 설정합니다.
-response.encoding = "utf-8"
 
-# 응답 데이터를 파싱합니다.
-soup = BeautifulSoup(response.text, "html.parser")
-
-# 속보 기사 제목을 찾습니다.
-titles = soup.select(".hdline_cluster_more .cluster_text > a")
-
-# 결과를 출력합니다.
-for title in titles:
-    print(title.text.strip())
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, "html.parser")
+    for tr in soup.select("#wrap > table > tbody > tr"):
+        title = tr.select_one("#main_content > div.list_body.newsflash_body > ul.type06_headline > li:nth-child(1) > dl > dt:nth-child(2) > a")
+        print(title.text.strip())
